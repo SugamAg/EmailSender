@@ -8,6 +8,7 @@ import java.util.List;
 public class MailRequest {
 
     private List<String> recipients;
+    private String senderEmail;
     private String subject;
     private String content;
 
@@ -35,5 +36,11 @@ public class MailRequest {
         this.content = content;
     }
 
+    public String getSenderEmail() {
+        return senderEmail;
+    }
 
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
+    }
 }

@@ -8,14 +8,57 @@ public class MailAccountDto {
 
     private String protocol;
     private long userId;
-    private String connectionName;
     private String mailHostUrl;
     private String mailUserName;
     private String senderEmailAddress;
     private String mailPassword;
-    private String storeType;
-    private String readFolder;
-    private int scheduler;
-    private boolean active;
 
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public String getMailHostUrl() {
+        return mailHostUrl;
+    }
+
+    public void setMailHostUrl(String mailHostUrl) {
+        this.mailHostUrl = mailHostUrl;
+    }
+
+    public String getMailUserName() {
+        return mailUserName;
+    }
+
+    public void setMailUserName(String mailUserName) {
+        this.mailUserName = mailUserName;
+    }
+
+    public String getSenderEmailAddress() {
+        return senderEmailAddress;
+    }
+
+    public void setSenderEmailAddress(String senderEmailAddress) {
+        this.senderEmailAddress = senderEmailAddress;
+    }
+
+    public String getMailPassword() {
+        return mailPassword;
+    }
+
+    public void setMailPassword(String mailPassword) {
+        this.mailPassword = mailPassword;
+    }
 }

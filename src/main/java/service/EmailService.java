@@ -1,7 +1,9 @@
 package service;
 
+import dao.MailAccountDao;
 import dto.MailRequest;
 import dto.MailResponse;
+import models.MailAccountEntity;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -11,30 +13,16 @@ import java.util.Properties;
 
 public class EmailService {
 
-    Session session;
 
-    public EmailService(String username, String password) {
-        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-        // Get a Properties object
-        Properties props = System.getProperties();
-        props.setProperty("mail.smtp.host", "smtp.gmail.com");
-        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.port", "465");
-        props.setProperty("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.auth", "true");
-
-         session = Session.getDefaultInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
+    public EmailService() {
     }
 
-    public MailResponse triggerEmail(MailRequest mailRequest, String fromEmail) {
+    public MailResponse triggerEmail(MailRequest mailRequest) {
         try {
-            Message message = new MimeMessage(session);
+            MailAccountDao accountDao = new MailAccountDao(HibernateUtil.getLocalSession());
+            MailAccountEntity mailAccountEntity = accountDao.fetchByEmail(mailRequest.getSenderEmail()).orElseThrow(() -> new RuntimeException("Sender Email info not present in db"));
+            Message message = new MimeMessage(getSession(mailAccountEntity));
+            String fromEmail = mailAccountEntity.getMailUserName();
             message.setFrom(new InternetAddress(fromEmail + "@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
@@ -48,5 +36,23 @@ public class EmailService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private Session getSession(MailAccountEntity mailAccountEntity) {
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+        // Get a Properties object
+        Properties props = System.getProperties();
+        props.setProperty("mail.smtp.host", mailAccountEntity.getMailHostUrl());
+        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.port", "465");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.auth", "true");
+        return Session.getDefaultInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(mailAccountEntity.getMailUserName(), mailAccountEntity.getMailPassword());
+            }
+        });
     }
 }

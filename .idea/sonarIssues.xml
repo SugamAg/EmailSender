@@ -23,7 +23,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dao/MailAccountDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/dao/UserDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dto/MailAccountDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dto/MailAccountRequest.java">
           <value>
             <set />
           </value>
@@ -34,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/handler/EmailHandler.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/handler/MailAccountHandler.java">
           <value>
             <set />
           </value>
@@ -59,6 +79,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/model/MailResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/models/MailAccountEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/models/MailPropertyEntity.java">
           <value>
             <set />
           </value>

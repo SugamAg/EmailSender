@@ -10,18 +10,13 @@ import service.EmailService;
 public class EmailHandler {
 
     private static EmailService emailService;
-    private Session session;
-
-
-    private static final String from = "*****";
-    private static final String from_pwd = "******";
 
     static {
-         emailService = new EmailService(from, from_pwd);
+         emailService = new EmailService();
     }
 
     public static Object triggerEmail(MailRequest mailRequest) {
-       return emailService.triggerEmail(mailRequest, from);
+       return emailService.triggerEmail(mailRequest);
     }
 
 }
