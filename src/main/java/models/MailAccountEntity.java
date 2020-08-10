@@ -39,7 +39,7 @@ private String protocol;
 @NotNull
 private long userId;
 
-@Column(name = "connection_name", unique = true, nullable = true)
+@Column(name = "connection_name")
 @NotNull
 private String connectionName;
 

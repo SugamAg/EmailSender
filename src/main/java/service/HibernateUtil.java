@@ -32,8 +32,7 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
-    
+
     public static Session getLocalSession() {
         Session session = (Session) localSession.get();
         if (session == null) {
