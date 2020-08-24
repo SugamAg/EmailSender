@@ -62,15 +62,4 @@ public class MailAccountDao {
                 .setParameter("email", email)
                 .uniqueResult());
     }
-
-//    public MailAccountEntity update(String id, String name){
-//        MailAccountEntity user = (MailAccountEntity) session.createQuery("from mail_account_configuration U where U.id = :id")
-//                .setParameter("id", Integer.parseInt(id))
-//                .uniqueResult();
-//        user.setName(name);
-//        session.beginTransaction();
-//        session.update(user);
-//        session.getTransaction().commit();
-//        return user;
-//    }
 }
