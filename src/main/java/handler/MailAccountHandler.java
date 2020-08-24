@@ -1,7 +1,6 @@
 package handler;
 
 import dao.MailAccountDao;
-import dao.UserDao;
 import dto.MailAccountDto;
 import models.MailAccountEntity;
 import org.hibernate.Session;
@@ -86,41 +85,4 @@ public class MailAccountHandler {
         return response;
     }
 
-    public static Object delete(String id){
-        Session session = null;
-        Map<String, Object> response = new HashMap<>();
-        try{
-            session = HibernateUtil.getLocalSession();
-            UserDao dao = new UserDao(session);
-            dao.delete(id);
-            response.put("status", true);
-            response.put("message", "success");
-        } catch (Exception e){
-            e.printStackTrace();
-            response.put("status", false);
-            response.put("message", "error");
-        } finally {
-            if(session != null){
-                HibernateUtil.closeLocalSession();
-            }
-        }
-        return response;
-    }
-
- /*   public static User update(String id, String name){
-        Session session = null;
-        User user = null;
-        try{
-            session = HibernateUtil.getLocalSession();
-            UserDao dao = new UserDao(session);
-            user = dao.update(id, name);
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            if(session != null){
-                HibernateUtil.closeLocalSession();
-            }
-        }
-        return user;
-    }*/
 }
